@@ -1,11 +1,11 @@
 Introduction 
 ============
 
-DemoSignLanguageExperInterface
+DemoSignLanguageExpertInterface
 ----
 
 
-This package demonstrates a simple interface between a GUI input console
+This package simulates a simple forward from a GUI input console
 and scripts that implement scene changes in `.ma` and `.mb` files using
 Autodesk Maya's Python interpreter.
 
@@ -16,7 +16,7 @@ Software
 --------
 
 Python 2.7.(>=11), Autodesk Maya 2017, Autodesk Maya's Python interpreter 
-needs to be in $PATH
+needs to be in `$PATH`.
 
 Operating Systems
 -----------------
@@ -30,7 +30,7 @@ specific, etc. -- but without any warranty.
 Installation
 ============
 
-Make sure that the true location of mayapy(.exe) -- Autodesk Maya's Python 
+Make sure that the true location of `mayapy(.exe)` -- Autodesk Maya's Python 
 interpreter -- is in your system $PATH! On MacOS and Linux, it is found 
 under `/usr/autodesk/maya2017/bin/`. Symlinking it e. g. `/usr/local/bin`
 can break its ability to import required modules provided by Autodesk.
@@ -49,16 +49,21 @@ Usage
 =====
 
 The nexus of the package is the module `Checker.py`, which interacts with the
-GUI and sends the result to Maya. It can be called from the command line with
-the following call:
+GUI and sends the result to Maya. From inside its directory, it can be called 
+from the command line with the following call:
 
 $ python Checker.py  <path/to/input/file> <path/to/file/to/modify>
 
-The input file is expected to be a text file with one German sentence and it's 
-translation into sign language glosses together in a line, separated with a TAB.
-The file to modify is any Maya ascii (`.ma`) or binary (`.mb`). Note that in the
+The package supplies a sample input file named `input_sentences.txt` and a simple
+Maya scene that can be modified, included with the relevant scripts in `Renderers`
+as `Head_Model.ma`. Using different input files with different naming and subdivision
+conventions will require adjusting the mayapy-scripts since they currently grab 
+nodes by name.
+
+The input file is expected to be a text file with one German sentence and its 
+translation into sign language glosses together in a line, separated with a TAB. Note that in the
 current implementation, the modified scenes are stored in the package's subdirectory
-`corrected_scenes` with irrespective of their origin!
+`corrected_scenes` irrespective of their origin!
 
 Implementation status
 =====================
