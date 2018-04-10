@@ -1,0 +1,15 @@
+#  id_          gloss  type
+     1            YOU  sequ
+     2              I  sequ
+     3            I_2  meta
+     4         HUNGRY  sequ
+     5            SAD  sequ
+     6         AFRAID  sequ
+     7      QUESTION_  meta
+     8          YOUNG  sequ
+     9          SMALL  sequ
+    10           THIN  sequ
+    11            HOT  sequ
+    12        CONFIRM  sequ  NOD
+    13            YES  sequ  RAISE_HEAD:SHOW_LEFT_PALM
+    

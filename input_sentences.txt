@@ -1,0 +1,4 @@
+Bist du hungrig?	YOU_SG HUNGRY QUESTION_
+Ja, ich bin hungrig.	I HUNGRY CONFIRM
+Magst du Pizza?	YOU PIZZA LIKE QUESTION_
+Dann bestellen wir doch eine	YOU_ME PIZZA ORDER ORDER
