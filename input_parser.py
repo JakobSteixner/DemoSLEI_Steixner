@@ -1,5 +1,5 @@
 #!/usr/bin/python
-from collections import OrderedDict
+from collections import OrderedDict, namedtuple
 
 def ParseSentence(from_file):
     """for reading the input sentences"""
@@ -10,6 +10,7 @@ def ParseSentence(from_file):
         except IndexError:
             pass
     return sentences
+
 
 
 class Gloss_list_parser():
@@ -32,14 +33,16 @@ class Gloss_list_parser():
                 
 
 def glosses(from_file = "glosslist.csv"):
+    """function to return a list of glosses, consider using
+    Gloss_list parser directly if you also need gestures and/or
+    types to minimize file handling."""
     reader = Gloss_list_parser(from_file)
     return reader.glosses
 
-def types(from_file= "glosslist.csv"):
-    reader = Gloss_list_parser(from_file)
-    return reader.types
-
 def gestures (from_file = "glosslist.csv"):
+    """function to return a list of gestures, consider using
+    Gloss_list parser directly if you also need glosses and/or
+    types to minimize file handling."""
     reader = Gloss_list_parser(from_file)
     def forcesplit(stringornone, sep=" "):
         try:
@@ -47,3 +50,12 @@ def gestures (from_file = "glosslist.csv"):
         except AttributeError:
             return stringornone
     return [forcesplit(line, ":") for line in reader.gesture_lists]
+
+def types(from_file= "glosslist.csv"):
+    """function to return a list of types, consider using
+    Gloss_list parser directly  if you also need gestures
+    and/or glosses to minimize file handling."""
+    reader = Gloss_list_parser(from_file)
+    return reader.types
+
+
