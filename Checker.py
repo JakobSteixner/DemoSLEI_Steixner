@@ -30,7 +30,7 @@ class Maya_backend:
         folderpath = string.join(targetscene.split(os.sep)[:-1], os.sep)
         filename = targetscene.split(os.sep)[-1]
         # take reading the lexicon out of the loop
-        glosses, gestures = input_parser.glosses(), input_parser.gestures()
+        glosses, gestures = Gloss_list_parser("glosslist.csv").providedata('glosses', 'gesture_lists')
         for gloss in result:
             idx = glosses.index(gloss)
             # was: idx = input_parser.glosses().index(gloss)
@@ -67,7 +67,7 @@ def main():
     inputsentences, targetscene = sys.argv[1:3]
     checker = Checker_backend(inputsentences,1,1)
     checker.send_to_gui(longinput=inputsentences, index=1)
-    print ("Accepted translation: " + checker.result)
+    print ("Accepted translation: " + str(checker.result))
     print ()
     return Maya_backend().send_to_maya(checker.result, targetscene)
 
