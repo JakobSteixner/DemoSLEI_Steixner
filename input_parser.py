@@ -48,6 +48,7 @@ class Gloss_list_parser():
                 self.gestures.append(forcesplit(currentgestures, ":"))
             except IndexError:
                 self.gesture_lists.append(None)
+                self.gestures.append(None)
     def providedata(self, *args):
         """Provides several data types at once. Types are
         specified by keywords as a string, e. g.
