@@ -36,9 +36,10 @@ class Render(object):
         if isinstance(filepath, basestring):
             self.path_to_file = filepath.split(sp)
         else: self.path_to_file = filepath
+        self.oldfilename, self.gesture = oldfilename, gesture
     def execute(self):
-        if any([self.copy_ma(oldfilename),
-            self.render_gloss(gesture)]):
+        if any([self.copy_ma(self.oldfilename),
+            self.render_gloss(self.gesture)]):
                 return 1
         return 0
     def copy_ma(self, filename):

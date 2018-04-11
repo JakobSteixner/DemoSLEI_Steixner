@@ -29,7 +29,7 @@ class Checker_backend():
         for gloss in self.result:
             idx = glosses.index(gloss)
             # was: idx = input_parser.glosses().index(gloss)
-            if glosses[idx] != None:
+            if gestures[idx] != None:
             # was: if input_parser.gestures()[idx] != None:
                 for gesture in gestures[idx]:
                 #for gesture in input_parser.gestures()[idx]:
@@ -64,7 +64,7 @@ if __name__ == '__main__':
         - the full path to a Maya scene to be modified
         """
         exit()
-    inputsentences, targetscene = sys.argv[1:]
+    inputsentences, targetscene = sys.argv[1:2]
     checker = Checker_backend(inputsentences,1,1)
     checker.send_to_gui(longinput=inputsentences, index=1)
     print checker.result
