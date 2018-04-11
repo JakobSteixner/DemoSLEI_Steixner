@@ -24,10 +24,15 @@ class Checker_backend():
     def send_to_maya(self, result, targetscene):
         folderpath = string.join(targetscene.split(os.sep)[:-1], os.sep)
         filename = targetscene.split(os.sep)[-1]
+        # take reading the lexicon out of the loop
+        glosses, gestures = input_parser.glosses(), input_parser.gestures()
         for gloss in self.result:
-            idx = input_parser.glosses().index(gloss)
-            if input_parser.gestures()[idx] != None:
-                for gesture in input_parser.gestures()[idx]:
+            idx = glosses.index(gloss)
+            # was: idx = input_parser.glosses().index(gloss)
+            if glosses[idx] != None:
+            # was: if input_parser.gestures()[idx] != None:
+                for gesture in gestures[idx]:
+                #for gesture in input_parser.gestures()[idx]:
                     #try:
                         Renderers.RPreprocessor.run(**{"filepath":folderpath, "oldfilename":filename, "gesture":gesture, "degrees":20})
                         print "we seem to have success rendering"
