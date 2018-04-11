@@ -34,9 +34,14 @@ class Checker_backend():
                 for gesture in gestures[idx]:
                 #for gesture in input_parser.gestures()[idx]:
                     #try:
-                        Renderers.RPreprocessor.run(**{"filepath":folderpath, "oldfilename":filename, "gesture":gesture, "degrees":20})
-                        print "we seem to have success rendering"
-                        print gesture + " as part of the gloss "+ gloss
+                        success = Renderers.RPreprocessor.run(**{"filepath":folderpath, "oldfilename":filename, "gesture":gesture, "degrees":20})
+                        if success == 0:
+                            print "we seem to have success rendering"
+                            print gesture + " as part of the gloss "+ gloss
+                        else:
+                            print "Something went wrong trying to copy and render scene."
+                            print "Check the stated sample file exists and mayapy is "
+                            print "found in your system $PATH"
                     # except:
                     #     print ""
                     #     print "Failure while trying `Renderers.RPreprocessor.run(gesture='%s')`"% gesture

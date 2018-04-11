@@ -36,8 +36,11 @@ class Render(object):
         if isinstance(filepath, basestring):
             self.path_to_file = filepath.split(sp)
         else: self.path_to_file = filepath
-        self.copy_ma(oldfilename)
-        self.render_gloss(gesture)
+    def execute(self):
+        if any([self.copy_ma(oldfilename),
+            self.render_gloss(gesture)]):
+                return 1
+        return 0
     def copy_ma(self, filename):
         """Copies the input file via subprecess and
         returns the name of the new file as a string
@@ -51,14 +54,20 @@ class Render(object):
         new_filename = string.join([filenamebase, current_time,fileext], ".")
         self.newpath = string.join(self.path_to_file[:-1] + ["corrected_scenes", new_filename],sp)
         # create copy of sample scene in folder `corrected_scenes`
-        subprocess.call(["cp", string.join(self.path_to_file + [filename],sp), self.newpath])
+        try:
+            subprocess.call(["cp", string.join(self.path_to_file + [filename],sp), self.newpath])
+            return 0
+        except:
+            print "Unable to copy template file, please check whether a file exists in the stated location"
+            return 1
     def render_gloss(self, gesture):
         try:
             print "gesture "+gesture+": It looks like we're succeeding sending stuff oof to maya"
             subprocess.call([mayapy, os.path.abspath(".")+sp+submodule+sp+"render__"+gesture+".py", self.newpath, str(self.degrees)])
+            return 0
         except OSError:
             print "mayapy seems not to be found on path, failed to execute", "render__"+gesture+".py"
-            pass
+            return 1
 
 
 
@@ -79,5 +88,5 @@ else:
         optional: timestamp
         """
         
-        Render(**args)
+        return Render(**args).execute()
 
