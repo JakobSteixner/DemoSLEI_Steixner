@@ -22,9 +22,10 @@ Operating Systems
 -----------------
 
 The package has been developed under Ubuntu 16.04 and partially tested under 
-MacOS, though without the link to Autodesk Maya -- I failed to install Maya on
-my (old) MacBook. It *should* work under Windows -- paths are ensured to be OS-
-specific, etc. -- but without any warranty.
+MacOS, though without the link to Autodesk Maya -- my old MacBook does not meet 
+Maya 2017's system requirements. It *should* work under Windows -- paths are
+ensured to be OS-specific, system calls are all with `shell=False`, etc. -- 
+but without any warranty since I was unable to test it under Windows.
 
 
 Installation
@@ -33,7 +34,7 @@ Installation
 Make sure that the true location of `mayapy(.exe)` -- Autodesk Maya's Python 
 interpreter -- is in your system $PATH! On MacOS and Linux, it is found 
 under `/usr/autodesk/maya2017/bin/`. Symlinking it e. g. `/usr/local/bin`
-can break its ability to import required modules provided by Autodesk.
+can sometimes break its ability to import required modules provided by Autodesk.
 
 The only modules that actually use `mayapy` are the ones in the 
 `Renderers/render__<GESTURE>` family. Since they are only accessed by 
@@ -60,8 +61,8 @@ as `Head_Model.ma`. Using different input files with different naming and subdiv
 conventions will require adjusting the mayapy-scripts since they currently grab 
 nodes by name.
 
-The input file is expected to be a text file with one German sentence and its 
-translation into sign language glosses together in a line, separated with a TAB. Note that in the
+The input file is expected to be a text file with each German sentence and its 
+translation into sign language glosses sharing a line, separated with a TAB. Note that in the
 current implementation, the modified scenes are stored in the package's subdirectory
 `corrected_scenes` irrespective of their origin!
 

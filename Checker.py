@@ -67,7 +67,8 @@ def main():
     inputsentences, targetscene = sys.argv[1:3]
     checker = Checker_backend(inputsentences,1,1)
     checker.send_to_gui(longinput=inputsentences, index=1)
-    print (checker.result)
+    print ("Accepted translation: " + checker.result)
+    print ()
     return Maya_backend().send_to_maya(checker.result, targetscene)
 
 
