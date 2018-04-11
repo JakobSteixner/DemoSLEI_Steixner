@@ -15,24 +15,37 @@ def ParseSentence(from_file):
 
 class Gloss_list_parser():
     """provides the information in "glossslist.csv" in handy
-    formats to other classes"""
+    formats to other classes. Available:
+    - indices, as list of integers
+    - glosses, list of strings
+    - types, list of strings identifying sequential or
+          non-sequential/`meta` character of sign
+    - gesture_lists, list of strings: gestures separates with ':'
+    - gestures, list of lists of gestures associated with a gloss
+    - publicdata, a dictionary with all these data types accessable
+            by name=keyword"""
+    
     def __init__(self, from_file, sep =""):
-        self.indices, self.glosses, self.types, self.gesture_lists = [],[],[], []
+        self.indices, self.glosses, self.types, self.gesture_lists, self.gestures = [],[],[], [], []
         self.publicdata= {"indices":self.indices,
                           "glosses":self.glosses,
                           "types":self.types,
-                          "gesture_lists":self.gesture_lists
+                          "gesture_lists":self.gesture_lists,
+                          "gestures":self.gestures
                           }
         inputfile = open(from_file).read().strip()
         sep = sep.strip(" ") # to avoid problems with "    " as sep
         for line in inputfile.split("\n")[1:]:
             try: splitline = line.strip().split(sep)
             except: splitline = line.strip().split()
-            self.indices.append(splitline[0])
+            self.indices.append(int(splitline[0]))
             self.glosses.append(splitline[1])
             self.types.append(splitline[2])
             try:
-                self.gesture_lists.append(splitline[3])
+                currentgestures = splitline[3]
+                
+                self.gesture_lists.append(currentgestures)
+                self.gestures.append(forcesplit(currentgestures, ":"))
             except IndexError:
                 self.gesture_lists.append(None)
     def providedata(self, *args):
@@ -42,6 +55,13 @@ class Gloss_list_parser():
         return [self.publicdata[arg] for arg in args]
 
 #exit()
+
+
+def forcesplit(stringornone, sep=" "):
+        try:
+            return stringornone.split(sep)
+        except AttributeError:
+            return stringornone
 
 def glosses(from_file = "glosslist.csv"):
     """function to return a list of glosses, consider using
@@ -55,11 +75,6 @@ def gestures (from_file = "glosslist.csv"):
     Gloss_list parser directly if you also need glosses and/or
     types to minimize file handling."""
     reader = Gloss_list_parser(from_file)
-    def forcesplit(stringornone, sep=" "):
-        try:
-            return stringornone.split(sep)
-        except AttributeError:
-            return stringornone
     return [forcesplit(line, ":") for line in reader.gesture_lists]
 
 def types(from_file= "glosslist.csv"):
@@ -70,4 +85,4 @@ def types(from_file= "glosslist.csv"):
     return reader.types
 
 def test():
-    assert Gloss_list_parser("glosslist.csv").providedata('glosses', 'gesture_lists') == (glosses(), gestures())
+    assert Gloss_list_parser("glosslist.csv").providedata('glosses', 'gestures') == (glosses(), gestures())
