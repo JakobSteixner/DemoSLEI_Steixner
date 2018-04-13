@@ -35,12 +35,13 @@ class Maya_backend:
         folderpath = string.join(targetscene.split(os.sep)[:-1], os.sep)
         filename = targetscene.split(os.sep)[-1]
         # take reading the lexicon out of the loop
-        glosses, gestures = input_parser.Gloss_list_parser("glosslist.csv").providedata('glosses', 'gesture_lists')
+        glosses, gestures = input_parser.Gloss_list_parser("glosslist.csv").providedata('glosses', 'gestures')
         for gloss in result:
             idx = glosses.index(gloss)
             # was: idx = input_parser.glosses().index(gloss)
             if gestures[idx] != None:
             # was: if input_parser.gestures()[idx] != None:
+            
                 for gesture in gestures[idx]:
                 #for gesture in input_parser.gestures()[idx]:
                     #try:
