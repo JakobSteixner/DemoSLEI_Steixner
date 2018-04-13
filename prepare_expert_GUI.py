@@ -186,7 +186,7 @@ class main():
         submit_button = self.tk.Button(master=self.canvas, text=u"Übersetzung akzeptieren", command=self.submit)
         submit_button.grid(columnspan=sentencelength/2, column=(sentencelength+1)/2, row=7, pady=6)
         request_addition_button = self.tk.Button(master=self.canvas, text=u"Glossen-Implementierung anfordern", command=self.request_addition)
-        request_addition_button.grid(columnspan=sentencelength/2, row=7, pady=7)
+        request_addition_button.grid(columnspan=sentencelength/2, row=7, pady=6)
     def request_addition(self):
         entryfield = Lodge_Request(master=None)
     def redraw_from_om(self, event):

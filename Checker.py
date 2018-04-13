@@ -6,7 +6,8 @@ sp = os.sep
 
 class Checker_backend():
     def __init__(self, filename, index, context_range):
-        input_sentences = self.input_sentences = input_parser.ParseSentence("input_sentences.txt")
+        self.filename = filename
+        input_sentences = self.input_sentences = input_parser.ParseSentence(filename)
         self.source_text = [key for key in input_sentences]
         self.suggested_translation = [input_sentences[key].split() for key in input_sentences]
         self.setcontextrange(context_range)
@@ -21,7 +22,11 @@ class Checker_backend():
         with open("logs"+sp+"changelog"+time.strftime("%Y%m%d")+".log", "a") as log:
             log.write(string.join ([ time.strftime("%Y%m%d%H%M%S"),
                                     "FROM", string.join(self.suggested_translation[self.index], ":"),
-                                    "TO", string.join(self.result, ":")], "\t") + "\n")
+                                    "TO", string.join(self.result, ":"),
+                                    "ORIG", self.source_text[self.index],
+                                    "File", self.filename
+                                    ], "\t") + "\n"
+                      )
 
 class Maya_backend:
     def __init__(self):
@@ -30,7 +35,7 @@ class Maya_backend:
         folderpath = string.join(targetscene.split(os.sep)[:-1], os.sep)
         filename = targetscene.split(os.sep)[-1]
         # take reading the lexicon out of the loop
-        glosses, gestures = Gloss_list_parser("glosslist.csv").providedata('glosses', 'gesture_lists')
+        glosses, gestures = input_parser.Gloss_list_parser("glosslist.csv").providedata('glosses', 'gesture_lists')
         for gloss in result:
             idx = glosses.index(gloss)
             # was: idx = input_parser.glosses().index(gloss)
