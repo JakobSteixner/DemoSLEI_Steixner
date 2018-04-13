@@ -1,0 +1,6 @@
+20180413064056	FROM	I:HUNGRY:CONFIRM	TO	I:HUNGRY:YES	ORIG	Ja, ich bin hungrig.	File	input_sentences.txt
+20180413064129	FROM	I:HUNGRY:CONFIRM	TO	I:HUNGRY:YES	ORIG	Ja, ich bin hungrig.	File	input_sentences.txt
+20180413064401	FROM	I:HUNGRY:CONFIRM	TO	I:HUNGRY:YES	ORIG	Ja, ich bin hungrig.	File	input_sentences.txt
+20180413064603	FROM	I:HUNGRY:CONFIRM	TO	I:HUNGRY:CONFIRM	ORIG	Ja, ich bin hungrig.	File	input_sentences.txt
+20180413064714	FROM	I:HUNGRY:CONFIRM	TO	I:HUNGRY:CONFIRM	ORIG	Ja, ich bin hungrig.	File	input_sentences.txt
+20180413064736	FROM	I:HUNGRY:CONFIRM	TO	I:HUNGRY:CONFIRM	ORIG	Ja, ich bin hungrig.	File	input_sentences.txt
